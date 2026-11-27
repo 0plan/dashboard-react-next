@@ -1,20 +1,22 @@
 {
-  "name": "next-common",
+  "name": "dashboard-react-next",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.34.9",
+  "engines": {
+    "node": "^22.13.0 || >=24"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-locales.mjs && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check:i18n": "node scripts/check-locales.mjs",
+    "check:traffic": "node scripts/check-traffic.mjs"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.10.0",
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^14.2.30",
-    "@projectstorm/react-canvas-core": "^7.0.3",
-    "@projectstorm/react-diagrams": "^7.0.4",
+    "@hookform/resolvers": "^5.9.2",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -43,49 +45,46 @@
     "@radix-ui/react-toggle": "^1.1.9",
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.4.1",
-    "eslint-plugin-tailwindcss": "^3.18.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.516.0",
-    "next": "14.2.3",
-    "next-themes": "^0.3.0",
-    "prettier": "^3.5.3",
-    "react": "^18.3.1",
-    "react-day-picker": "^8.10.1",
-    "react-dom": "^18.3.1",
+    "next": "16.4.6",
+    "next-themes": "^0.4.6",
+    "react": "19.3.1",
+    "react-day-picker": "^8.10.2",
+    "react-dom": "19.3.1",
     "react-hook-form": "^7.58.0",
     "react-resizable-panels": "^2.1.9",
-    "rehype-pretty-code": "^0.13.2",
-    "remark-gfm": "^4.0.1",
     "sonner": "^1.7.4",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.9",
-    "zod": "^3.25.67"
+    "tailwind-merge": "^3.7.1",
+    "vaul": "^1.1.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^20.19.1",
-    "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.3.7",
-    "@uiw/react-md-editor": "^4.0.7",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.3",
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/node": "^22.20.7",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.15.0",
+    "eslint-config-next": "16.4.6",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-better-tailwindcss": "^4.11.0",
+    "eslint-plugin-prettier": "^5.4.1",
     "lint-staged": "^15.5.2",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.33",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.3.5",
+    "tw-animate-css": "^1.4.0",
     "typescript": "^5.8.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "next lint --fix"
+    "*.{js,jsx,mjs,ts,tsx}": "eslint --fix --max-warnings=0"
   }
 }
